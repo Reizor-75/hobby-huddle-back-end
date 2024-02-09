@@ -19,4 +19,28 @@ function checkAuth(req, res, next) {
   return req.user ? next() : res.status(401).json({ err: 'Not Authorized' })
 }
 
-export { decodeUserFromToken, checkAuth }
+function checkMentor(req, res, next){
+  //mentor role === 300
+  if(req.user && req.user.profile.role >= 500 ) return next() 
+  return res.status(401).json({ err: 'Not Authorized' })
+}
+
+function checkStudent(req, res, next){
+  //student role === 200
+  if(req.user && req.user.profile.role === 200 ) return next() 
+  return res.status(401).json({ err: 'Not Authorized' })
+}
+
+function checkVendor(req, res, next){
+  //vendor role === 100
+  if(req.user && req.user.profile.role === 100 ) return next() 
+  return res.status(401).json({ err: 'Not Authorized' })
+}
+
+export { 
+  decodeUserFromToken, 
+  checkAuth,
+  checkMentor,
+  checkStudent,
+  checkVendor,  
+}

@@ -4,7 +4,12 @@ const Schema = mongoose.Schema
 
 const profileSchema = new Schema({
   name: String,
-  photo: String
+  photo: String,
+  role:{
+    type: Number,
+    required: true
+  }
+
 },{
   timestamps: true,
 })
