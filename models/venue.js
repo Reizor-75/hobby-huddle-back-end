@@ -21,6 +21,7 @@ const venueSchema = new Schema({
   },
   address: {
     type: String
+    //should this be required?
   },
   capacity: {
     type: Number
