@@ -9,7 +9,6 @@ const profileSchema = new Schema({
     type: Number,
     required: true
   }
-
 },{
   timestamps: true,
 })

@@ -20,8 +20,8 @@ function checkAuth(req, res, next) {
 }
 
 function checkMentor(req, res, next){
-  //mentor role === 300
-  if(req.user && req.user.profile.role >= 500 ) return next() 
+  //mentor role === 500
+  if(req.user && req.user.role >= 500 ) return next() 
   return res.status(401).json({ err: 'Not Authorized' })
 }
 
