@@ -7,6 +7,7 @@ const router = Router()
 
 /*---------- Public Routes ----------*/
 router.get('/', workshopsCtrl.index)
+router.get('/:workshopId', workshopsCtrl.show)
 
 /*---------- Protected Routes ----------*/
 router.use(auth.decodeUserFromToken)

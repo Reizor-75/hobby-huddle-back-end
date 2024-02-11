@@ -28,8 +28,20 @@ async function create(req, res){
     res.status(500).json(error)
   }
 }
+async function show(req, res){
+  try { 
+    const workshop = await Workshop.findById(req.params.workshopId)
+      .populate(['mentorName', 'studentsAttending'])
+      console.log(workshop)
+    res.status(201).json(workshop)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
 
 export{
   index,
   create,
+  show,
 }
