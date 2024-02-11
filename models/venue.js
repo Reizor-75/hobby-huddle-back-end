@@ -3,6 +3,9 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const venueSchema = new Schema({
+  
+  //should we include vendor profile, noticed our ERD didn't include that
+
   vendorName: {
     required: true,
     type:  String
@@ -34,6 +37,6 @@ const venueSchema = new Schema({
   timestamps: true,
 })
 
-const Venue = mongoose.model('Workshop', workshopSchema)
+const Venue = mongoose.model('Venue', venueSchema)
 
 export { Venue }
