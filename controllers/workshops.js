@@ -4,7 +4,7 @@ import { Workshop } from '../models/workshop.js'
 async function index(req, res){
   try {
     const workshops = await Workshop.find({})
-      // .populate(['mentorName', 'location', "studentsAttending"])
+      .populate(['mentorName'])
     res.status(200).json(workshops)
   } catch (error) {
     console.log(error)
@@ -28,11 +28,24 @@ async function create(req, res){
     res.status(500).json(error)
   }
 }
+
 async function show(req, res){
   try { 
     const workshop = await Workshop.findById(req.params.workshopId)
       .populate(['mentorName', 'studentsAttending'])
-      console.log(workshop)
+    res.status(201).json(workshop)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
+async function deleteWorkshop(req, res){
+  try {
+    const workshop = await Workshop.findByIdAndDelete(req.params.workshopId)
+    const profile = await Profile.findById(req.user.profile)
+    profile.myWorkshops.remove({ _id: req.params.workshopId })
+    await profile.save()
     res.status(201).json(workshop)
   } catch (error) {
     console.log(error)
@@ -44,4 +57,5 @@ export{
   index,
   create,
   show,
+  deleteWorkshop as delete, 
 }
