@@ -10,7 +10,6 @@ const profileSchema = new Schema({
     required: true
   },
   myVenues:[{type: Schema.Types.ObjectId,ref: 'Venue'}]
-
 },{
   timestamps: true,
 })
