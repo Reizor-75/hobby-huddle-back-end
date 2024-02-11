@@ -6,6 +6,11 @@ const venueSchema = new Schema({
   
   //should we include vendor profile, noticed our ERD didn't include that
 
+  venueOwner: {
+    type: Schema.Types.ObjectId, 
+    ref: 'Profile'
+  },
+
   vendorName: {
     required: true,
     type:  String
