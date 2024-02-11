@@ -10,6 +10,7 @@ const router = Router()
 router.use(decodeUserFromToken)
 router.post('/',checkAuth, venuesCtrl.create)
 router.get('/', checkAuth, venuesCtrl.index)
+router.delete('/:venueId', checkAuth, venuesCtrl.delete)
 
 
 export { router }

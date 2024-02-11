@@ -8,7 +8,9 @@ const profileSchema = new Schema({
   role:{
     type: Number,
     required: true
-  }
+  },
+  myVenues:[{type: Schema.Types.ObjectId,ref: 'Venue'}]
+
 },{
   timestamps: true,
 })
