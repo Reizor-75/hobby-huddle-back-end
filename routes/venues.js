@@ -10,8 +10,8 @@ const router = Router()
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.post('/',auth.checkVendor, venuesCtrl.create)
-router.get('/', auth.checkVendor, auth.checkMentor, venuesCtrl.index)
+router.put('/:venueId',auth.checkVendor, venuesCtrl.update)
+router.get('/', auth.checkVendor, venuesCtrl.index)
 router.delete('/:venueId', auth.checkVendor, venuesCtrl.delete)
-
 
 export { router }
