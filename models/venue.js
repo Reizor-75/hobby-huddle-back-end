@@ -4,17 +4,14 @@ const Schema = mongoose.Schema
 
 const venueSchema = new Schema({
   
-  //should we include vendor profile, noticed our ERD didn't include that
-
   venueOwner: {
     type: Schema.Types.ObjectId, 
     ref: 'Profile'
   },
 
-  vendorName: {
+  venueTitle: {
     required: true,
     type:  String
-    
   },
   phoneNumber: {
     required: true,
@@ -28,8 +25,8 @@ const venueSchema = new Schema({
     type: String
   },
   address: {
+    required: true,
     type: String
-    //should this be required?
   },
   capacity: {
     type: Number
