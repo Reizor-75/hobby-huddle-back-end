@@ -44,8 +44,20 @@ async function update (req, res){
   }
 }
 
+async function show(req, res) {
+  try {
+    const profile = await Profile.findById(req.params.profileId)
+      .populate(['myWorkshops', 'myVenues', 'reviews'])
+      res.status(200).json(blog)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
 export { 
   index, 
   addPhoto,
-  update 
+  update,
+  show 
 }

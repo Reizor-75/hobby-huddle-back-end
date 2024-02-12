@@ -9,7 +9,25 @@ const profileSchema = new Schema({
     type: Number,
     required: true
   },
-  myVenues:[{type: Schema.Types.ObjectId,ref: 'Venue'}]
+  phoneNumber: {
+    type: Number,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  aboutMe: {
+    type: String,
+    required: true
+  },
+  skills: {
+    type: String,
+    required: true
+  },
+  myVenues:[{type: Schema.Types.ObjectId,ref: 'Venue'}],
+  myWorkshops:[{type: Schema.Types.ObjectId,ref: 'Workshop'}],
+  reviews:[{type: Schema.Types.ObjectId,ref: 'reviewSchema'}],
 },{
   timestamps: true,
 })
