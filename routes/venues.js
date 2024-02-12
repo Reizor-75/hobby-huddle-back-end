@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { decodeUserFromToken, checkAuth} from '../middleware/auth.js'
 import * as venuesCtrl from '../controllers/venues.js'
+import * as auth from '../middleware/auth.js'
 
 const router = Router()
 
@@ -8,9 +9,9 @@ const router = Router()
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
-router.post('/',checkAuth, venuesCtrl.create)
-router.get('/', checkAuth, venuesCtrl.index)
-router.delete('/:venueId', checkAuth, venuesCtrl.delete)
+router.post('/',auth.checkVendor, venuesCtrl.create)
+router.get('/', auth.checkVendor, auth.checkMentor, venuesCtrl.index)
+router.delete('/:venueId', auth.checkVendor, venuesCtrl.delete)
 
 
 export { router }

@@ -18,17 +18,18 @@ async function create(req, res) {
     }
   }
 
-async function index(req, res){
-  try {
-    const venues = await Venue.find({})
-    .populate('venueOwner')
-    .populate(req.body._id)
-    res.status(200).json(venues)
-  } catch (error) {
-    console.log(error)
-    res.status(500).json(error)
+
+  async function index(req, res){
+    try {
+      const venues = await Venue.find({})
+      .populate('venueOwner')
+      .populate(req.body._id)
+      res.status(200).json(venues)
+    } catch (error) {
+      console.log(error)
+      res.status(500).json(error)
+    }
   }
-}
 
 async function deleteVenue (req,res){
 
