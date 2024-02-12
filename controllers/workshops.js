@@ -4,7 +4,7 @@ import { Workshop } from '../models/workshop.js'
 async function index(req, res){
   try {
     const workshops = await Workshop.find({})
-      .populate(['mentorName'])
+      .populate(['mentorInfo'])
     res.status(200).json(workshops)
   } catch (error) {
     console.log(error)
@@ -14,14 +14,14 @@ async function index(req, res){
 
 async function create(req, res){
   try {
-    req.body.mentorName = req.user.profile
+    req.body.mentorInfo = req.user.profile
     const workshop = await Workshop.create(req.body)
     const profile = await Profile.findByIdAndUpdate(
       req.user.profile,
       { $push: { myWorkshops: workshop } },
       { new: true }
     )
-    workshop.mentorName = profile
+    workshop.mentorInfo = profile
     res.status(201).json(workshop)
   } catch (error) {
     console.log(error)
@@ -32,7 +32,7 @@ async function create(req, res){
 async function show(req, res){
   try { 
     const workshop = await Workshop.findById(req.params.workshopId)
-      .populate(['mentorName', 'studentsAttending'])
+      .populate(['mentorInfo', 'location', 'studentsAttending'])
     res.status(201).json(workshop)
   } catch (error) {
     console.log(error)
