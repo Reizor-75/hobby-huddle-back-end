@@ -9,6 +9,7 @@ const router = Router()
 /*---------- Protected Routes ----------*/
 router.use(auth.decodeUserFromToken)
 router.post('/newRequest', auth.checkStudent, requestsCtrl.create)
+router.get('/', auth.checkAuth, requestsCtrl.index)
 
 
 export { router }
