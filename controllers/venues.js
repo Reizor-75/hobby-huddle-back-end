@@ -10,7 +10,9 @@ async function create(req, res) {
         {$push: {myVenues: venue}},
         {new:true}
       )
-      venue.venueOwner = profile
+      //leave for icebox manipulation
+      // venue.tags.push(req.body.tags)
+      // venue.venueOwner = profile
       res.status(201).json(venue)
     } catch (error) {
       console.log(error)
@@ -48,6 +50,7 @@ async function create(req, res) {
 
 async function deleteVenue (req,res){
   try {
+
     const venue = await Venue.findByIdAndDelete(req.params.venueId)
     const profile = await Profile.findById(req.user.profile)
     profile.myVenues.remove({ _id: req.params.venueId })

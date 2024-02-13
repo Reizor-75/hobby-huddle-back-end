@@ -19,7 +19,6 @@ const reviewSchema = new Schema({
   timestamps: true
 })
 
-
 const profileSchema = new Schema({
   name: String,
   photo: String,
