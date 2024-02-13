@@ -26,7 +26,6 @@ async function index(req, res){
 async function myRequest(req, res){
   try {
     const requests = await Request.find({student:req.user.profile}).exec()
-
     res.status(200).json(requests)
   } catch (error) {
     console.log(error)
@@ -34,8 +33,19 @@ async function myRequest(req, res){
   }
 }
 
+async function deleteRequest(req, res){
+  try {
+    const request = await Request.findByIdAndDelete(req.params.requestId)
+    res.status(200).json(request)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
 export{
   create,
   index,
   myRequest,
+  deleteRequest as delete,
 }
