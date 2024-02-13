@@ -15,6 +15,7 @@ async function create(req, res){
 async function index(req, res){
   try {
     const requests = await Request.find({})
+      .populate('student')
     res.status(200).json(requests)
   } catch (error) {
     console.log(error)
