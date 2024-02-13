@@ -26,6 +26,7 @@ async function index(req, res){
 async function myRequest(req, res){
   try {
     const requests = await Request.find({student:req.user.profile})
+      .populate('bids.mentorInfo')
     res.status(200).json(requests)
   } catch (error) {
     console.log(error)
@@ -88,6 +89,21 @@ async function deleteBid(req, res){
   }
 }
 
+async function updateBid(req, res){
+  try {
+    const request = await Request.findById(req.params.requestId)
+    const bid = request.bids.id(req.params.bidId)
+    bid.message = req.body.message
+    bid.fee = req.body.fee
+    await bid.save()
+    await request.save()
+    res.status(200).json(request)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
 export{
   create,
   index,
@@ -96,4 +112,5 @@ export{
   update,
   createBid,
   deleteBid,
+  updateBid,
 }
