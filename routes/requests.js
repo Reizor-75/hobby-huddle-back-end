@@ -11,7 +11,9 @@ router.use(auth.decodeUserFromToken)
 router.post('/newRequest', auth.checkStudent, requestsCtrl.create)
 router.get('/', auth.checkMentor, requestsCtrl.index)
 router.get('/myRequests', auth.checkAuth, requestsCtrl.myRequest)
+router.put('/myRequests/:requestId', auth.checkStudent, requestsCtrl.update)
 router.delete('/:requestId', auth.checkAuth, requestsCtrl.delete)
+
 
 
 export { router }

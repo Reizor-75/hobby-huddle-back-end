@@ -43,9 +43,24 @@ async function deleteRequest(req, res){
   }
 }
 
+async function update(req, res){  
+  try {
+    const request = await Request.findByIdAndUpdate(
+      req.params.requestId,
+      req.body,
+      { new: true }
+    ).populate('student')
+    res.status(200).json(request)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
 export{
   create,
   index,
   myRequest,
   deleteRequest as delete,
+  update,
 }
