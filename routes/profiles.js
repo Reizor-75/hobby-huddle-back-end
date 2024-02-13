@@ -13,5 +13,6 @@ router.get('/', checkAuth, profilesCtrl.index)
 router.get('/:profileId', checkAuth, profilesCtrl.show)
 router.put('/:id/add-photo', checkAuth, profilesCtrl.addPhoto)
 router.put('/:profileId', checkAuth, profilesCtrl.update)
+router.post('/:profileId/reviews', checkAuth, profilesCtrl.createReview)
 
 export { router }

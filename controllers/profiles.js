@@ -48,16 +48,36 @@ async function show(req, res) {
   try {
     const profile = await Profile.findById(req.params.profileId)
       .populate(['myWorkshops', 'myVenues', 'reviews'])
-      res.status(200).json(blog)
+      res.status(200).json(profile)
   } catch (error) {
     console.log(error)
     res.status(500).json(error)
   }
 }
 
+async function createReview(req, res){
+  try {
+    req.body.reviewer = req.user.profile
+    const profile = await Profile.findById(req.params.profileId)
+    profile.reviews.push(req.body)
+    await profile.save()
+    console.log("🔥profile:", profile)
+    const newReview = profile.reviews[profile.reviews.length - 1]
+
+    const commentAuthor = await Profile.findById(req.user.profile)
+    newReview.reviewer = commentAuthor
+
+    res.status(201).json(newReview)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
+
 export { 
   index, 
   addPhoto,
   update,
-  show 
+  show,
+  createReview, 
 }
