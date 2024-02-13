@@ -29,7 +29,6 @@ const profileSchema = new Schema({
   },
   phoneNumber: {
     type: Number,
-    required: true
   },
   email: {
     type: String,
@@ -37,11 +36,9 @@ const profileSchema = new Schema({
   },
   aboutMe: {
     type: String,
-    required: true
   },
   skills: {
     type: String,
-    required: true
   },
   myVenues:[{type: Schema.Types.ObjectId,ref: 'Venue'}],
   myWorkshops:[{type: Schema.Types.ObjectId,ref: 'Workshop'}],
