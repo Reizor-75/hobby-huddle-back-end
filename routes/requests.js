@@ -8,7 +8,7 @@ const router = Router()
 
 /*---------- Protected Routes ----------*/
 router.use(auth.decodeUserFromToken)
-router.post('/:workshopId', auth.checkStudent, requestsCtrl.create)
+router.post('/newRequest', auth.checkStudent, requestsCtrl.create)
 
 
 export { router }
