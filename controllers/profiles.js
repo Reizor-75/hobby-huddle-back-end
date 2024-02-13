@@ -3,7 +3,7 @@ import { v2 as cloudinary } from 'cloudinary'
 
 async function index(req, res) {
   try {
-    const profiles = await Profile.find({})
+    const profiles = await Profile.find({role: 500})
     res.json(profiles)
   } catch (err) {
     console.log(err)
@@ -72,23 +72,6 @@ async function createReview(req, res){
     res.status(500).json(error)
   }
 }
-
-// async function updateReview(req, res) {
-//   try {
-//     const profile = await Profile.findById(req.params.profileId)
-//     // match id of review that needs updating with profile.reviews
-//     const review = profile.reviews.find((review) => review._id === req.params.reviewId)
-//     console.log(review)
-//     // set the old review body to the new review body 
-//     review.content = req.body.content
-//     review.title = req.body.title
-//     // update and then save the profile. Map all reviews and then replace old review with new review via matching id. Set profile.reviews with updated review.
-//     await profile.save()
-//     res.status(200).json(review)
-//   } catch (err) {
-//     res.status(500).json(err)
-//   }
-// }
 
 const updateReview = async (req, res) => {
   try {
