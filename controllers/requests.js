@@ -93,8 +93,21 @@ async function updateBid(req, res){
   try {
     const request = await Request.findById(req.params.requestId)
     const bid = request.bids.id(req.params.bidId)
-    bid.message = req.body.message
-    bid.fee = req.body.fee
+    
+    await bid.save()
+    await request.save()
+    res.status(200).json(request)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
+async function setAprroval(req, res){  
+  try {    
+    const request = await Request.findById(req.params.requestId)
+    const bid = request.bids.id(req.params.bidId)
+    bid.approvalStatus = req.body.approvalStatus
     await bid.save()
     await request.save()
     res.status(200).json(request)
@@ -113,4 +126,5 @@ export{
   createBid,
   deleteBid,
   updateBid,
+  setAprroval
 }
