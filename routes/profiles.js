@@ -10,6 +10,11 @@ const router = Router()
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.get('/', checkAuth, profilesCtrl.index)
+router.get('/:profileId', checkAuth, profilesCtrl.show)
 router.put('/:id/add-photo', checkAuth, profilesCtrl.addPhoto)
+router.put('/:profileId', checkAuth, profilesCtrl.update)
+router.put('/:profileId/reviews/:reviewId', checkAuth, profilesCtrl.updateReview)
+router.post('/:profileId/reviews', checkAuth, profilesCtrl.createReview)
+router.delete('/:profileId/reviews/:reviewId', checkAuth, profilesCtrl.deleteReview)
 
 export { router }

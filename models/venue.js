@@ -4,37 +4,19 @@ const Schema = mongoose.Schema
 
 const venueSchema = new Schema({
   
-  venueOwner: {
+  reviewer: {
     type: Schema.Types.ObjectId, 
     ref: 'Profile'
   },
-
-  venueTitle: {
+  title: {
     required: true,
     type:  String
   },
-  phoneNumber: {
+  content: {
     required: true,
-    type: String
-  }, 
-  website: {
-    type: String
+    type:  String
   },
-  email: {
-    required: true,
-    type: String
-  },
-  address: {
-    required: true,
-    type: String
-  },
-  capacity: {
-    type: Number
-  },
-  tags: {
-    type: String,
-    enum: ['Craft', 'Art', 'Food', 'Sport', 'Music', 'Other']
-  }
+
 },{
   timestamps: true,
 })
