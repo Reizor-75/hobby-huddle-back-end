@@ -10,7 +10,8 @@ async function create(req, res) {
         {$push: {myVenues: venue}},
         {new:true}
       )
-      venue.venueOwner = profile
+      venue.tags.push(req.body.tags)
+      // venue.venueOwner = profile
       res.status(201).json(venue)
     } catch (error) {
       console.log(error)
