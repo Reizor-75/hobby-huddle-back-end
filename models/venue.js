@@ -3,19 +3,34 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const venueSchema = new Schema({
-  
-  reviewer: {
+  venueOwner: {
     type: Schema.Types.ObjectId, 
     ref: 'Profile'
   },
-  title: {
+  venueTitle: {
     required: true,
     type:  String
   },
-  content: {
+  phoneNumber: {
     required: true,
     type:  String
   },
+  website: {
+    type:  String
+  },
+  email: {
+    required: true,
+    type:  String
+  },
+  address: {
+    required: true,
+    type:  String
+  },
+  capacity: Number,
+  tags: {
+    type: String,
+    enum: ['Craft', 'Art', 'Food', 'Sport', 'Music', 'Other']
+  }
 
 },{
   timestamps: true,
