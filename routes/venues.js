@@ -11,7 +11,7 @@ const router = Router()
 router.use(decodeUserFromToken)
 router.post('/',auth.checkVendor, venuesCtrl.create)
 router.put('/:venueId',auth.checkVendor, venuesCtrl.update)
-router.get('/', auth.checkVendor, venuesCtrl.index)
+router.get('/', auth.checkAuth, venuesCtrl.index)
 router.delete('/:venueId', auth.checkVendor, venuesCtrl.delete)
 
 export { router }

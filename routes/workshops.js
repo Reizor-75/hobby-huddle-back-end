@@ -11,6 +11,7 @@ router.get('/:workshopId', workshopsCtrl.show)
 
 /*---------- Protected Routes ----------*/
 router.use(auth.decodeUserFromToken)
+router.put('/:workshopId', auth.checkStudent, workshopsCtrl.apply)
 router.post('/newWorkshop', auth.checkMentor, workshopsCtrl.create)
 router.delete('/:workshopId', auth.checkMentor, workshopsCtrl.delete)
 
