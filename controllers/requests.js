@@ -23,7 +23,19 @@ async function index(req, res){
   }
 }
 
+async function myRequest(req, res){
+  try {
+    const requests = await Request.find({student:req.user.profile}).exec()
+
+    res.status(200).json(requests)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)      
+  }
+}
+
 export{
   create,
   index,
+  myRequest,
 }
