@@ -76,6 +76,18 @@ async function createBid(req, res){
   }
 }
 
+async function deleteBid(req, res){
+  try {
+    const request = await Request.findById(req.params.requestId)
+    request.bids.remove({ _id: req.params.bidId })
+    await request.save()
+    res.status(200).json(request)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
 export{
   create,
   index,
@@ -83,4 +95,5 @@ export{
   deleteRequest as delete,
   update,
   createBid,
+  deleteBid,
 }
