@@ -3,11 +3,11 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const workshopSchema = new Schema({
-  mentorName: {
+  mentorInfo: {
     type: Schema.Types.ObjectId, 
     ref: 'Profile'
   },
-  eventType: {
+  title: {
     required: true,
     type: String,
   }, 
