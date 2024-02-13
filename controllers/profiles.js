@@ -47,7 +47,7 @@ async function update (req, res){
 async function show(req, res) {
   try {
     const profile = await Profile.findById(req.params.profileId)
-      .populate(['myWorkshops', 'myVenues', 'reviews'])
+      .populate(['myWorkshops', 'myVenues', 'reviews.reviewer'])
       res.status(200).json(profile)
   } catch (error) {
     console.log(error)
@@ -73,18 +73,43 @@ async function createReview(req, res){
   }
 }
 
-async function updateReview(req, res) {
+// async function updateReview(req, res) {
+//   try {
+//     const profile = await Profile.findById(req.params.profileId)
+//     // match id of review that needs updating with profile.reviews
+//     const review = profile.reviews.find((review) => review._id === req.params.reviewId)
+//     console.log(review)
+//     // set the old review body to the new review body 
+//     review.content = req.body.content
+//     review.title = req.body.title
+//     // update and then save the profile. Map all reviews and then replace old review with new review via matching id. Set profile.reviews with updated review.
+//     await profile.save()
+//     res.status(200).json(review)
+//   } catch (err) {
+//     res.status(500).json(err)
+//   }
+// }
+
+const updateReview = async (req, res) => {
   try {
     const profile = await Profile.findById(req.params.profileId)
-    // match id of review that needs updating with profile.reviews
-    const review = profile.reviews.find((review) => review._id === req.params.reviewId)
-    // set the old review body to the new review body 
-    review.content = req.body.content
+    const review = profile.reviews.id(req.params.reviewId)
     review.title = req.body.title
-    console.log(review)
-    // update and then save the profile. Map all reviews and then replace old review with new review via matching id. Set profile.reviews with updated review.
-    await review.save()
-    res.status(200).json(review)
+    await profile.save()
+    res.status(200).json(profile)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
+
+
+
+const deleteReview = async (req, res) => {
+  try {
+    const profile = await Profile.findById(req.params.profileId)
+    profile.reviews.remove({ _id: req.params.reviewId })
+    await profile.save()
+    res.status(200).json(profile)
   } catch (err) {
     res.status(500).json(err)
   }
@@ -97,5 +122,6 @@ export {
   update,
   show,
   createReview,
-  updateReview 
+  updateReview,
+  deleteReview 
 }
