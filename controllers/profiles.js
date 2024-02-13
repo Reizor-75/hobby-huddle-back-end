@@ -73,11 +73,29 @@ async function createReview(req, res){
   }
 }
 
+async function updateReview(req, res) {
+  try {
+    const profile = await Profile.findById(req.params.profileId)
+    // match id of review that needs updating with profile.reviews
+    const review = profile.reviews.find((review) => review._id === req.params.reviewId)
+    // set the old review body to the new review body 
+    review.content = req.body.content
+    review.title = req.body.title
+    console.log(review)
+    // update and then save the profile. Map all reviews and then replace old review with new review via matching id. Set profile.reviews with updated review.
+    await review.save()
+    res.status(200).json(review)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
+
 
 export { 
   index, 
   addPhoto,
   update,
   show,
-  createReview, 
+  createReview,
+  updateReview 
 }
