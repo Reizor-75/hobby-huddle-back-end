@@ -25,7 +25,7 @@ async function index(req, res){
 
 async function myRequest(req, res){
   try {
-    const requests = await Request.find({student:req.user.profile}).exec()
+    const requests = await Request.find({student:req.user.profile})
     res.status(200).json(requests)
   } catch (error) {
     console.log(error)
@@ -57,10 +57,30 @@ async function update(req, res){
   }
 }
 
+async function createBid(req, res){
+  try {
+    req.body.mentorInfo = req.user.profile
+    const request = await Request.findById(req.params.requestId)
+    request.bids.push(req.body)
+    await request.save()
+    
+    const newBid = request.bids[request.bids.length - 1]
+    const profile = await Profile.findById(req.user.profile)
+    newBid.mentorInfo = profile
+    res.status(201).json(newBid)
+
+    res.status(201).json()
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
 export{
   create,
   index,
   myRequest,
   deleteRequest as delete,
   update,
+  createBid,
 }
