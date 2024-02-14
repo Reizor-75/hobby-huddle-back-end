@@ -37,7 +37,8 @@ const profileSchema = new Schema({
     type: String,
   },
   skills: {
-    type: String,
+    type: [String],
+    required: true
   },
   myVenues:[{type: Schema.Types.ObjectId,ref: 'Venue'}],
   myWorkshops:[{type: Schema.Types.ObjectId,ref: 'Workshop'}],
