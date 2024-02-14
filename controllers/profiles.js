@@ -3,7 +3,7 @@ import { v2 as cloudinary } from 'cloudinary'
 
 async function index(req, res) {
   try {
-    const profiles = await Profile.find({})
+    const profiles = await Profile.find({role: 500})
     res.json(profiles)
   } catch (err) {
     console.log(err)
@@ -31,13 +31,15 @@ async function addPhoto(req, res) {
 }
 
 async function update (req, res){
+  console.log("REQUEST BODY", req.body)
   try {
-    const profile = await Profile.findByIdAndUpdate(
-      req.params.profileId,
-      req.body,
-      { new: true }
-      ).populate('author')
-    res.status(200).json(blog)
+    const profile = await Profile.findById(req.params.profileId)
+    profile.phoneNumber = req.body.phoneNumber
+    profile.email = req.body.email
+    profile.skills = req.body.skills
+    profile.aboutMe = req.body.aboutMe
+    await profile.save()
+    res.status(200).json(profile)
   } catch (error) {
     console.log(error)
     res.status(500).json(error)
@@ -73,28 +75,12 @@ async function createReview(req, res){
   }
 }
 
-// async function updateReview(req, res) {
-//   try {
-//     const profile = await Profile.findById(req.params.profileId)
-//     // match id of review that needs updating with profile.reviews
-//     const review = profile.reviews.find((review) => review._id === req.params.reviewId)
-//     console.log(review)
-//     // set the old review body to the new review body 
-//     review.content = req.body.content
-//     review.title = req.body.title
-//     // update and then save the profile. Map all reviews and then replace old review with new review via matching id. Set profile.reviews with updated review.
-//     await profile.save()
-//     res.status(200).json(review)
-//   } catch (err) {
-//     res.status(500).json(err)
-//   }
-// }
-
 const updateReview = async (req, res) => {
   try {
     const profile = await Profile.findById(req.params.profileId)
     const review = profile.reviews.id(req.params.reviewId)
     review.title = req.body.title
+    review.content = req.body.content
     await profile.save()
     res.status(200).json(profile)
   } catch (err) {
