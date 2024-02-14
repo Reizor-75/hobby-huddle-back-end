@@ -30,15 +30,16 @@ const requestSchema = new Schema({
     type: String,    
     required: true
   },
-  details: String,
+  description: String,
   lowestPayment: {
     type: Number,
     required: true
   },
   highestPayment: {
     type: Number,
-    required: true
+    required: true,
   },
+  photo: String,
   bids: [bidSchema]
 },{
   timestamps: true,

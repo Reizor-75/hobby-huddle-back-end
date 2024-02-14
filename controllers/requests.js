@@ -26,7 +26,7 @@ async function index(req, res){
 async function myRequest(req, res){
   try {
     const requests = await Request.find({student:req.user.profile})
-      .populate('bids.mentorInfo')
+      .populate(['student','bids.mentorInfo'])
     res.status(200).json(requests)
   } catch (error) {
     console.log(error)
