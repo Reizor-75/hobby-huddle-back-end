@@ -36,7 +36,8 @@ const workshopSchema = new Schema({
     type: String,
     required: true,
     enum: ['Craft', 'Art', 'Food', 'Sport', 'Music', 'Other']
-  }
+  },
+  photo: String
 },{
   timestamps: true,
 })

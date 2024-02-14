@@ -26,6 +26,7 @@ async function index(req, res){
 async function myRequest(req, res){
   try {
     const requests = await Request.find({student:req.user.profile})
+      .populate(['student','bids.mentorInfo'])
     res.status(200).json(requests)
   } catch (error) {
     console.log(error)
@@ -76,6 +77,46 @@ async function createBid(req, res){
   }
 }
 
+async function deleteBid(req, res){
+  try {
+    const request = await Request.findById(req.params.requestId)
+    request.bids.remove({ _id: req.params.bidId })
+    await request.save()
+    res.status(200).json(request)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
+async function updateBid(req, res){
+  try {
+    const request = await Request.findById(req.params.requestId)
+    const bid = request.bids.id(req.params.bidId)
+    
+    await bid.save()
+    await request.save()
+    res.status(200).json(request)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
+async function setAprroval(req, res){  
+  try {    
+    const request = await Request.findById(req.params.requestId)
+    const bid = request.bids.id(req.params.bidId)
+    bid.approvalStatus = req.body.approvalStatus
+    await bid.save()
+    await request.save()
+    res.status(200).json(request)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
 export{
   create,
   index,
@@ -83,4 +124,7 @@ export{
   deleteRequest as delete,
   update,
   createBid,
+  deleteBid,
+  updateBid,
+  setAprroval
 }
