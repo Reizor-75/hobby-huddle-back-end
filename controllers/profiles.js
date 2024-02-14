@@ -31,13 +31,15 @@ async function addPhoto(req, res) {
 }
 
 async function update (req, res){
+  console.log("REQUEST BODY", req.body)
   try {
-    const profile = await Profile.findByIdAndUpdate(
-      req.params.profileId,
-      req.body,
-      { new: true }
-      ).populate('author')
-    res.status(200).json(blog)
+    const profile = await Profile.findById(req.params.profileId)
+    profile.phoneNumber = req.body.phoneNumber
+    profile.email = req.body.email
+    profile.skills = req.body.skills
+    profile.aboutMe = req.body.aboutMe
+    await profile.save()
+    res.status(200).json(profile)
   } catch (error) {
     console.log(error)
     res.status(500).json(error)
@@ -78,6 +80,7 @@ const updateReview = async (req, res) => {
     const profile = await Profile.findById(req.params.profileId)
     const review = profile.reviews.id(req.params.reviewId)
     review.title = req.body.title
+    review.content = req.body.content
     await profile.save()
     res.status(200).json(profile)
   } catch (err) {
