@@ -32,6 +32,25 @@ async function create(req, res) {
     }
   }
 
+  async function addPhoto(req, res) {
+    try {
+      const imageFile = req.files.photo.path
+      const venue = await Venue.findById(req.params.id)
+  
+      const image = await cloudinary.uploader.upload(
+        imageFile, 
+        { tags: `${req.user.email}` }
+      )
+      venue.coverImage = image.url
+      
+      await venue.save()
+      res.status(201).json(venue.photo)
+    } catch (err) {
+      console.log(err)
+      res.status(500).json(err)
+    }
+  }
+
   async function update (req,res){
     try {
       req.body.venueOwner = req.user.profile  
@@ -65,6 +84,7 @@ async function deleteVenue (req,res){
 export{
     create,
     index,
+    addPhoto,
     deleteVenue as delete,
     update
 }
