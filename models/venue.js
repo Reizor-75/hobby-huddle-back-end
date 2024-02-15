@@ -30,6 +30,10 @@ const venueSchema = new Schema({
   tags: {
     type: String,
     enum: ['Craft', 'Art', 'Food', 'Sport', 'Music', 'Other']
+  },
+
+  coverImage:{
+    type: String
   }
 
 },{
