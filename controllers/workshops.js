@@ -5,6 +5,7 @@ async function index(req, res){
   try {
     const workshops = await Workshop.find({})
       .populate(['mentorInfo', 'location'])
+      .sort({date:'desc'})
     res.status(200).json(workshops)
   } catch (error) {
     console.log(error)

@@ -30,6 +30,7 @@ const requestSchema = new Schema({
     type: String,    
     required: true
   },
+  category: String,
   description: String,
   lowestPayment: {
     type: Number,

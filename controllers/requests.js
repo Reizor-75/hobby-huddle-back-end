@@ -15,7 +15,7 @@ async function create(req, res){
 async function index(req, res){
   try {
     const requests = await Request.find({})
-      .populate('student')
+      .populate(['student','bids.mentorInfo'])
     res.status(200).json(requests)
   } catch (error) {
     console.log(error)
@@ -50,7 +50,7 @@ async function update(req, res){
       req.params.requestId,
       req.body,
       { new: true }
-    ).populate('student')
+    ).populate(['student','bids.mentorInfo'])
     res.status(200).json(request)
   } catch (error) {
     console.log(error)
@@ -117,6 +117,17 @@ async function setAprroval(req, res){
   }
 }
 
+async function show(req, res){
+  try { 
+    const workshop = await Request.findById(req.params.requestId)
+      .populate(['student', 'bids.mentorInfo'])
+    res.status(201).json(workshop)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+}
+
 export{
   create,
   index,
@@ -126,5 +137,6 @@ export{
   createBid,
   deleteBid,
   updateBid,
-  setAprroval
+  setAprroval,
+  show,
 }
