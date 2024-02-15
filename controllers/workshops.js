@@ -4,7 +4,7 @@ import { Workshop } from '../models/workshop.js'
 async function index(req, res){
   try {
     const workshops = await Workshop.find({})
-      .populate(['mentorInfo'])
+      .populate(['mentorInfo', 'location'])
     res.status(200).json(workshops)
   } catch (error) {
     console.log(error)
