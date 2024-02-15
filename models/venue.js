@@ -31,7 +31,7 @@ const venueSchema = new Schema({
     type: String,
     enum: ['Craft', 'Art', 'Food', 'Sport', 'Music', 'Other']
   },
-  coverImage:{
+  coverPhoto:{
     type: String
   }
 

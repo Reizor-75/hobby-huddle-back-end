@@ -1,79 +1,42 @@
-# Decoupled MERN Stack with JWT Auth Template - Back End
-65ca62791e9a2f1fd75f49e1
-This is the back end of a decoupled MERN Stack app that includes JWT Authentication.
+# Hobby Huddle - Back End
 
-When combined with the front end found [here](https://github.com/SEI-Remote/decoupled-mern-jwt-auth-template-front-end), you'll have all you need to build a full stack MERN app!
+Hobby Huddle tackles the challenge of connecting eager learners with local mentors and teachers. This platform fills the gap by providing a centralized hub where individuals seeking to learn new skills can easily find and engage with experienced mentors who tailor to their interests. Simultaneously, it offers teachers a space to showcase their talents and host sessions, while enabling vendors to promote their venues for workshops. 
 
-Use this to go build things! 🚀
+Whether you're seeking unique skills or aiming to share your passion, Hobby Huddle is rooted in building communities and bringing learning and teaching opportunities to your neighborhood.
 
-## To Use This Template
+This is the front end of the MERN Stack app that includes JWT Authentication. 
 
-**Replace `<name-of-your-app-here>` (including the `<` and `>`) in the commands below with the name of your app!**
+When combined with the front end found [here](https://github.com/Reizor-75/hobby-huddle-front-end), you'll have all you need to access the Hobby Huddle Community !
 
-```bash
-git clone https://github.com/SEI-Remote/decoupled-mern-jwt-auth-template-back-end <name-of-your-app-here>-back-end
-cd <name-of-your-app-here>-back-end
-code .
-```
+## <a href="#">Visit the app here </a> 💫
 
-With the project open in VS Code, open a terminal and run:
+## Contributors 👩‍💻👩‍💻👩‍💻
 
-```bash
-rm -rf .git
-```
+Krystina Bradley - [GitHub profile](https://github.com/kscott2016)
+Michelle Linares - [GitHub profile](https://github.com/Reizor-75)
+Soundarya Nattuva - [GitHub profile](https://github.com/SoundaryaNattuva)
 
-Here's what your command line output should like after this step (note that the indicator that we are in a git repository is gone!)
+### Attributions and Technologies used 💻
+<ul>
+<li>Decoupled MERN Stack with JWT Auth Template</li>
+  <ul>
+  <li>[Front End](https://github.com/SEI-Remote/decoupled-mern-jwt-auth-template-front-end)</li>
+  <li>[Back End](https://github.com/SEI-Remote/decoupled-mern-jwt-auth-template-back-end)</li>
+  </ul>
+<li>Mongoose</li>
+<li>React.js</li>
+<li>Mongo DB</li>
+<li>Inkspace - app used to design assests</li>
+<li>Background Patterns from [Hero Patterns](https://heropatterns.com/)</li>
+</ul>
 
-<img src="https://i.imgur.com/L47kNOZ.png" alt="The command line before and after running the rm -rf .git command. Before git:(main) is visible indiating that the directory contains a git repository, after the command it is not.">
-
-Re-initialize a git repository:
-
-```bash
-git init
-```
-
-Create a repo for this project on GitHub and add that remote to your project with (replacing your-repo-URL-here with the URL of the repo you just created):
-
-```bash
-git remote add origin your-repo-URL-here
-```
-
-Run `npm i` to fetch the template's dependencies:
-
-```bash
-npm i
-```
-
-touch a `.env` file:
-
-```bash
-touch .env
-```
-
-Fill it with the following:
-
-```
-DATABASE_URL=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-SECRET=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-CLOUDINARY_URL=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-```
-
-Replace the `DATABASE_URL`, `SECRET`, and `CLOUDINARY_URL` with values that you provide.
-
-> 🚨 Place secrets in this `.env` file. The contents of this file WILL NOT be exposed to site visitors.
-
-Delete this `README.md`, then make an initial commit:
-
-```bash
-git add .
-git commit -m "initial commit"
-git push origin main
-```
-
-Launch the app with:
-
-```bash
-nodemon
-```
-
-You're done!
+#### Ice Box Features 🧊
+<ul>
+<ul>
+<li>[] Allow Student Profiles to store favorite workshops and favorite Mentors</li>
+<li>[] Mentor profiles will be able to edit a bid</li>
+<li>[] Users can search for skills in all profiles page</li>
+<li>[] Venue owners should be able to set availability to their venues</li>
+<li>[] Add image galleries to workshop and venue listings</li>
+<li>[] Create a class pass feature</li>
+</ul>
