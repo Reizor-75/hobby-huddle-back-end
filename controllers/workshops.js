@@ -5,7 +5,6 @@ async function index(req, res){
   try {
     const workshops = await Workshop.find({})
       .populate(['mentorInfo', 'location'])
-      .sort({date:'desc'})
     res.status(200).json(workshops)
   } catch (error) {
     console.log(error)
@@ -63,9 +62,6 @@ async function apply(req, res){
     else {
       workshop.studentsAttending.push(req.user.profile)    
       await workshop.save()
-      // const profile = await Profile.findById(req.user.profile)
-      // profile.myWorkshops.push(workshop._id)
-      // await profile.save()
       res.status(201).json(workshop)
     }
   } catch (error) {

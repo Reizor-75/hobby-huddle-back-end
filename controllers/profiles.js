@@ -15,7 +15,6 @@ async function addPhoto(req, res) {
   try {
     const imageFile = req.files.photo.path
     const profile = await Profile.findById(req.params.id)
-
     const image = await cloudinary.uploader.upload(
       imageFile, 
       { tags: `${req.user.email}` }
@@ -63,7 +62,6 @@ async function createReview(req, res){
     const profile = await Profile.findById(req.params.profileId)
     profile.reviews.push(req.body)
     await profile.save()
-    console.log("🔥profile:", profile)
     const newReview = profile.reviews[profile.reviews.length - 1]
 
     const commentAuthor = await Profile.findById(req.user.profile)
@@ -88,8 +86,6 @@ const updateReview = async (req, res) => {
   }
 }
 
-
-
 const deleteReview = async (req, res) => {
   try {
     const profile = await Profile.findById(req.params.profileId)
@@ -100,7 +96,6 @@ const deleteReview = async (req, res) => {
     res.status(500).json(err)
   }
 }
-
 
 export { 
   index, 
