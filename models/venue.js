@@ -34,7 +34,6 @@ const venueSchema = new Schema({
   coverPhoto:{
     type: String
   }
-
 },{
   timestamps: true,
 })
